@@ -1,0 +1,236 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+%\usepackage{psfig}
+%\usepackage{amsmath}
+%\usepackage[spanish]{babel} 
+\usepackage{graphics}                 % Packages to allow inclusion of graphics
+\RequirePackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{comment}
+\usepackage[spanish]{babel}
+\spanishdecimal{.}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+
+\pagestyle{fancyplain} 
+\long\def\symbolfootnote[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
+
+\hyphenation{ co-rres-pon-dien-tes cons-ta tem-pe-ra-tu-ra
+              i-rre-ver-si-ble su-mi-nis-trar re-a-li-zan-do
+              re-pre-sen-tar ne-ce-sa-rios pen-dien-tes
+              res-pec-to di-fe-ren-tes de-sa-rro-lla-do
+              io-ni-za-cion ra-san-tes co-li-sio-na-les
+              de-ta-lla-re-mos par-ti-cu-lar es-cri-tu-ra
+              De-sa-rro-lla-re-mos nues-tro nues-tros o-pe-ra-do-res
+              de-ge-ne-ra-cio-nes de-ge-ne-ran a-su-mien-do 
+              su-per-fi-cie co-rres-pon-dien-te po-si-ti-va
+              a-pro-xi-ma-da-men-te }
+
+
+\let\svthefootnote\thefootnote
+
+
+
+\begin{document}
+
+\lhead[\fancyplain{}]{Examen 5}
+\rhead[\fancyplain{}]{F5}
+
+\begin{center}
+{\Large \bf F\'{\i}sica 5$^{\mathrm{to}}$} \\
+{\large \bf Soluci\'on Examen: Ley de Ohm y Circuitos CC}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enumerate}
+
+\item 
+
+\begin{enumerate}
+ \item Con LL1 Abierta: 
+
+\label{probcca}
+\begin{circuitikz}[scale=1]
+\draw
+(0,2) to [battery1,l_=10 V, *-*] (0,-2)  
+(0,2) to [R,l=R, *-*] (2,2) 
+(0,-2) -- (2,-2)
+(2,1) -- (2,3)
+(2,1) to [R,l=R, *-*] (5,1) 
+(5,1) -- (6,1)
+(2,3) to [ammeter, *-*] (4,3) 
+(4,3) to [R,l=2R, *-*] (6,3) 
+(6,1) -- (6,3)
+(6,2) to [R,l=$\frac{R}{2}$, *-*] (10,2) 
+(7,1) to [voltmeter, *-*] (9,1) 
+(7,1) to [short,*-*] (7,2)
+(9,1) to [short,*-*] (9,2)
+(10,-2) -- (10,2)
+(0,-2) to [R, l=3R, *-*] (10,-2) 
+;
+%llave
+%\draw
+%(5,1) to [R, l_=500 $\Omega$, *-*] (6,-0.5)
+%(6,-0.5) to [normal open switch, l=LL1, *-*] (7,-2)
+%;
+\end{circuitikz}
+\captionof{figure}{Circuito del Problema ~\ref{probcca}}
+\label{fig:circuitoa}
+
+\begin{eqnarray}
+R_{par} &=& \frac{2R \times R}{2R + R}= \frac{2}{3}R \nonumber \\
+R_{tot} &=& R + R_{par} + \frac{R}{2} + 3R = R \left(
+1 + \frac{2}{3} + \frac{1}{2} + 3 \right) = 
+R \left( \frac{6 + 4 + 3 + 18}{6} \right) = \frac{31}{6} R
+\nonumber \\
+I &=& \frac{V}{R_{tot}} = \frac{60 \, \mathrm{Volt}}{31 \, R \,\, (\Omega)} 
+\nonumber 
+\end{eqnarray}
+La corriente en el amper\'{\i}metro es la corriente total, divida por 
+3, ya que \'esta se bifurca en dos partes, $\frac{1}{3}$ circula por donde 
+haya mayor resistencia, y $\frac{2}{3}$ por la rama con menor resistencia. 
+Si denominamos $V_{R_{par}}$ a la diferencia 
+de potencial el\'ectrico entre las resistencias en paralelo:
+\begin{eqnarray}
+V_{R_{par}} &=& I \times R_{par} \nonumber \\
+\frac{I_{amp}}{I} &=& \frac{\frac{V_{R_{par}}}{2R}}{I} =  
+\frac{\frac{I \times R_{par} }{2R}}{I} = \frac{R_{par}}{2R} = 
+\frac{\frac{2}{3}R}{2R} = \frac{1}{3} \nonumber \\
+I_{amp} &=& \frac{20 \, \mathrm{Volt}}{31 \, R  \,\, (\Omega)} \nonumber  \, .
+\end{eqnarray}
+El volt\'{\i}metro, por su parte, marca la ca\'{\i}da de tensi\'on 
+sobre la resistencia:
+\begin{eqnarray}
+V_{volt} = I \cdot \frac{R}{2} = 
+\frac{60 \, \mathrm{Volt}}{31 \, R } \times \frac{R}{2} = 
+\frac{30}{31} \, \mathrm{Volt} = 0.97 \, \mathrm{Volt}
+\nonumber \, .
+\end{eqnarray}
+Este valor no depende de $R$. >Puede ser correcto este resultado?
+
+ \item Con LL1 Cerrada: \\
+\label{probccc}
+En este caso, el circuito se puede dibujar como:
+
+\begin{circuitikz}[scale=1]
+\draw
+(0,2) to [battery1,l_=10 V, *-*] (0,-2)  
+(0,2) to [R,l=R, *-*] (2,2) 
+(0,-2) -- (2,-2)
+(2,1) -- (2,3)
+(2,1) to [R,l=R, *-*] (6,1) 
+(2,3) to [ammeter, *-*] (4,3) 
+(4,3) to [R,l=2R, *-*] (6,3) 
+(6,1) -- (6,3)
+(6,2) to [R,l=$\frac{R}{2}$, *-*] (10,2) 
+(7,1) to [voltmeter, *-*] (9,1) 
+(7,1) to [short,*-*] (7,2)
+(9,1) to [short,*-*] (9,2)
+(10,-2) -- (10,2)
+(0,-2) to [R, l=3R, *-*] (10,-2) 
+;
+%sinllave
+\draw
+(7,0) to [R,l_=3R, *-*] (9,0)
+(7,0) -- (7,1) 
+(9,0) -- (9,1)
+;
+\end{circuitikz}
+\captionof{figure}{Circuito del Problema ~\ref{probccc}}
+\label{fig:circuitoc}
+
+\begin{eqnarray}
+R_{par_{2}} &=& \frac{ \frac{R}{2} \times 3R}{\frac{R}{2}+3R} = 
+\frac{ \frac{3}{2} }{\frac{7}{2} }R = \frac{3}{7} R \nonumber \\
+R_{tot} &=& R  + R_{par} + R_{par_{2}} + 3R = 
+R \left(\, 1 + \frac{2}{3} + \frac{3}{7} + 3 \right) = 
+\frac{107}{21} R \nonumber \\
+I &=& \frac{V}{R_{tot}} = \frac{210 \, \mathrm{Volt}}{107 \, R \,\, (\Omega)}  
+\nonumber 
+\end{eqnarray}
+La corriente en el amper\'{\i}metro es la corriente total, divida por 
+3:
+\begin{eqnarray}
+I_{amp} = \frac{I}{3} = \frac{70 \, \mathrm{Volt}}{107 \, R \,\, (\Omega)}  
+\nonumber  \, .
+\end{eqnarray}
+El volt\'{\i}metro, por su parte, marca la ca\'{\i}da de tensi\'on 
+sobre la resistencia equivalente $R_{par_{2}}$:
+\begin{eqnarray}
+V_{volt} = I_{tot} \cdot R_{par_{2}} = 
+\frac{210 \, \mathrm{Volt}}{107 \, R }  \cdot \frac{3}{7} R = 
+\frac{90}{107} \,,\, \mathrm{Volt} = 0.84 \,\, \mathrm{Volt} 
+\nonumber 
+\end{eqnarray}
+
+
+\end{enumerate}
+
+
+\vspace{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item 
+Si sabemos la corriente que circula por la resistencia, podemos 
+calcular la potencia:
+\begin{eqnarray}
+W &=& I^2_{amp} \times 2 R 
+\nonumber
+\end{eqnarray}
+\begin{enumerate}
+\item Llave LL1 abierta:
+\begin{eqnarray}
+W &=& I^2_{amp} \times 2 R = 
+\left( \frac{20 \, \mathrm{Volt}}{31 \, R } \right)^2 \times 2 R =  
+\frac{800}{961 \, R} = \frac{0.83}{R} \,\, \mathrm{Watt} \nonumber  \, .
+\end{eqnarray}
+
+\item Llave LL2 cerrada: 
+\begin{eqnarray}
+W &=& I^2_{amp} \times 2 R = 
+\left(  \frac{70 \, \mathrm{Volt}}{107 \, R}  \right)^2 \times 2 R =  
+\frac{9800}{11449 \, R} = \frac{0.86}{R} \,\, \mathrm{Watt} \nonumber  \, .
+\end{eqnarray}
+
+\end{enumerate}
+\vspace{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item La energ\'{\i}a total necesaria para calentar una taza de 
+agua, desde 20 $^\circ{C}$ hasta 100 $^\circ{C}$ es
+\begin{eqnarray}
+Q = m \, c_v \, \Delta T = 250 \, g \,\,  4.184 \, 
+\frac{J}{g \, ^\circ{C}}   
+\, \, (100 - 20) \, ^\circ{C}  = 83.7 \, kJ \nonumber 
+\end{eqnarray}
+El KWh es una unidad de energ\'{\i}a, correspondiente a utilizar 
+una potencia de 1kW durante 1 hora (3600 segundos):
+\begin{eqnarray}
+1 \, KWh = 1 \, \frac{kJ}{sec} \, 3600 \, sec = 3600 \, kJ 
+\nonumber \, .
+\end{eqnarray}
+Por lo tanto, la energ\'{\i}a que se necesita para calentar la taza, 
+en kWh es:
+\begin{eqnarray}
+Q \, [KWh] = \frac{Q \, [kJ] }{3600 \, kJ/KWh} = 0.023 \, KWh \, . \nonumber
+\end{eqnarray}
+Multiplicando por 3 pesos, nos da un costo de 0.07 $\$$.
+
+Para obtener el tiempo que tarda el calentador, necesitamos calcular 
+la potencia del mismo:
+\begin{eqnarray}
+P = \frac{V^2}{R} = \frac{220^2}{20} = 2420 \, W = 2.42 \, kW 
+\nonumber \, .
+\end{eqnarray}
+El tiempo en segundos, es 
+\begin{eqnarray}
+t = \frac{Q}{P} = \frac{83.7 \, kJ}{2.42 \, kJ/s} = 35 \,\, \mathrm{sec}
+\nonumber \, .
+\end{eqnarray}
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

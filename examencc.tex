@@ -1,0 +1,118 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+%\usepackage{psfig}
+%\usepackage{amsmath}
+%\usepackage[spanish]{babel} 
+\usepackage{graphics}                 % Packages to allow inclusion of graphics
+\RequirePackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{comment}
+\usepackage[spanish]{babel}
+\spanishdecimal{.}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+
+\pagestyle{fancyplain} 
+\long\def\symbolfootnote[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
+
+\hyphenation{ co-rres-pon-dien-tes cons-ta tem-pe-ra-tu-ra
+              i-rre-ver-si-ble su-mi-nis-trar re-a-li-zan-do
+              re-pre-sen-tar ne-ce-sa-rios pen-dien-tes
+              res-pec-to di-fe-ren-tes de-sa-rro-lla-do
+              io-ni-za-cion ra-san-tes co-li-sio-na-les
+              de-ta-lla-re-mos par-ti-cu-lar es-cri-tu-ra
+              De-sa-rro-lla-re-mos nues-tro nues-tros o-pe-ra-do-res
+              de-ge-ne-ra-cio-nes de-ge-ne-ran a-su-mien-do 
+              su-per-fi-cie co-rres-pon-dien-te po-si-ti-va
+              a-pro-xi-ma-da-men-te }
+
+
+\let\svthefootnote\thefootnote
+
+
+
+\begin{document}
+
+\lhead[\fancyplain{}]{Ejercicios}
+\rhead[\fancyplain{}]{F5}
+
+\begin{center}
+{\Large \bf F\'{\i}sica 5$^{\mathrm{to}}$} \\
+{\large \bf Ejercicios: Ley de Ohm y Circuitos CC}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enumerate}
+
+\item 
+\label{probcc}
+\begin{enumerate}
+\item Tom\'a la primer letra de tu nombre y asignale un n\'umero entero $a$.
+Este n\'umero va a ser $a=1$ si tu nombre comienza con A, 2 si comienza con B, 
+3 si es C, etc.
+\item Asign\'a, de la misma forma, un n\'umero entero $b$ a tu apellido.
+\item Calcul\'a $R=a+10\,b$.
+\item Ese valor de $R$ es el que vas a utilizar en este ejercicio. \\
+\end{enumerate}
+
+\vspace{0.01\textheight}
+Calcular los valores que miden el volt\'{\i}metro y 
+el amper\'{\i}metro de la
+Figura~\ref{fig:circuito}, para el caso en que la llave $LL1$ 
+est\'a abierta, y para cuando est\'a cerrada.
+
+\begin{circuitikz}[scale=1]
+\draw
+(0,2) to [battery1,l_=10 V, *-*] (0,-2)  
+(0,2) to [R, l=R, *-*] (2,2) 
+(0,-2) -- (2,-2)
+(2,1) -- (2,3)
+(2,1) to [R,l=R, *-*] (5,1) 
+(5,1) -- (6,1)
+(2,3) to [ammeter, *-*] (4,3) 
+(4,3) to [R,l=2R, *-*] (6,3) 
+(6,1) -- (6,3)
+(6,2) to [R,l=$\frac{R}{2}$, *-*] (10,2) 
+(7,1) to [voltmeter, *-*] (9,1) 
+(7,1) to [short,*-*] (7,2)
+(9,1) to [short,*-*] (9,2)
+(10,-2) -- (10,2)
+(0,-2) to [R, l=3R, *-*] (10,-2) 
+;
+%llave
+\draw
+(5,1) to [R, l_=3R, *-*] (6,-0.5)
+(6,-0.5) to [normal open switch, l=LL1, *-*] (7,-2)
+;
+\end{circuitikz}
+\captionof{figure}{Circuito del Problema ~\ref{probcc}}
+\label{fig:circuito}
+
+\vspace{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Calcular la potencia disipada por la resistencia $2R$ en 
+ambos escenarios (llave LL1 abierta y cerrada).
+
+
+\vspace{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item (Puntaje Extra): 
+Un calentador el\'ectrico cuya resistencia es $R= 20 \, \Omega$ 
+se conecta a la red domiciliaria (220 V) para hervir una taza de 
+agua. Calcular aproximadamente el tiempo que tarda y el 
+costo de este proceso. 
+
+\vspace{0.25 cm}
+\underline{Ayuda}:\\
+1 Calor\'{\i}a = 4.184 Joules \\
+4 Tazas $\approx$ 1 litro
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
